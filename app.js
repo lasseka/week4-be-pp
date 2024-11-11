@@ -7,7 +7,7 @@ const {
   createTour,
   updateTour,
   deleteTour,
-} = require("./tourHandlers.js"); 
+} = require("./controllers/tourControllers"); 
 
 // Middleware to parse JSON
 app.use(express.json());
