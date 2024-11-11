@@ -7,20 +7,22 @@ const {
     updateUser,
     deleteUser,
   } = require("../controllers/userControllers")
+  const { authorizeUsersAccess } = require("../middleware/auth");
+  //router.use(authorizeUsersAccess)
 
 // ROUTES
 // GET /tours
 router.get("/", getAllUsers);
 
 // POST /tours
-router.post("/", createUser);
+router.post("/", authorizeUsersAccess, createUser);
 
 // GET /tours/:tourId
-router.get("/:userId", getUserById);
+router.get("/:userId", authorizeUsersAccess, getUserById);
 
 // PUT /tours/:tourId
-router.put("/:userId", updateUser);
+router.put("/:userId", authorizeUsersAccess, updateUser);
 
 // DELETE /tours/:tourId
-router.delete("/:userId", deleteUser);
+router.delete("/:userId", authorizeUsersAccess, deleteUser);
 module.exports = router;

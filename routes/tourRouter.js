@@ -7,20 +7,22 @@ const {
     updateTour,
     deleteTour,
   } = require("../controllers/tourControllers")
+  const { authorizeUsersAccess } = require("../middleware/auth");
+  //router.use(authorizeUsersAccess)
 
 // ROUTES
 // GET /tours
 router.get("/", getAllTours);
 
 // POST /tours
-router.post("/", createTour);
+router.post("/", authorizeUsersAccess, createTour);
 
 // GET /tours/:tourId
-router.get("/:tourId", getTourById);
+router.get("/:tourId", authorizeUsersAccess, getTourById);
 
 // PUT /tours/:tourId
-router.put("/:tourId", updateTour);
+router.put("/:tourId", authorizeUsersAccess, updateTour);
 
 // DELETE /tours/:tourId
-router.delete("/:tourId", deleteTour);
+router.delete("/:tourId", authorizeUsersAccess, deleteTour);
 module.exports = router;
