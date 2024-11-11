@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const userRouter = require('./routes/userRouter');
 const tourRouter = require("./routes/tourRouter")
+const morgan = require("morgan")
+app.use(morgan("tiny"))
 
 
 // Middleware to parse JSON
